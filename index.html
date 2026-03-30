@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO -->
+  <title>Pegasus | Desarrollo de Software a Medida para tu Empresa</title>
+  <meta name="description" content="Pegasus es una consultora IT especializada en desarrollo de software a medida para pequeñas y medianas empresas. Innovación, escalabilidad y resultados." />
+  <meta name="keywords" content="desarrollo software, consultora IT, web app, software a medida, pymes, Argentina, desarrollo web" />
+  <meta name="author" content="Pegasus Consultora IT" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pegasus | Software a Medida para tu Empresa" />
+  <meta property="og:description" content="Transformamos ideas en soluciones digitales. Desarrollo de software a medida para pymes que quieren crecer." />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:site_name" content="Pegasus IT" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pegasus | Software a Medida" />
+  <meta name="twitter:description" content="Consultora IT para pymes. Software que escala con tu negocio." />
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Pegasus" />
+
+  <!-- Fonts — Clash Display (display) + Outfit (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+/* ═══════════════════════════════════════════════════════════
+   RESET & VARIABLES
+═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:          #0a0a0f;
+  --bg-2:        #0f0f18;
+  --bg-3:        #141420;
+  --surface:     #1a1a28;
+  --surface-2:   #22223a;
+  --border:      rgba(255,255,255,0.07);
+  --border-2:    rgba(255,255,255,0.12);
+  --primary:     #6C63FF;
+  --primary-2:   #8b85ff;
+  --accent:      #00D4FF;
+  --accent-2:    #33ddff;
+  --text:        #f0f0f8;
+  --text-2:      #a0a0c0;
+  --text-3:      #6060a0;
+  --success:     #22c55e;
+  --font:        'Outfit', sans-serif;
+  --radius:      12px;
+  --radius-lg:   20px;
+  --shadow:      0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg:   0 12px 48px rgba(0,0,0,0.6);
+  --transition:  0.3s cubic-bezier(0.4,0,0.2,1);
+  --max-w:       1200px;
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography ── */
+h1,h2,h3,h4 { font-family: var(--font); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+h1 { font-weight: 800; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+button { font-family: var(--font); cursor: pointer; border: none; background: none; }
+
+/* ── Utility ── */
+.container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+.section { padding: 96px 0; }
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary-2);
+  background: rgba(108,99,255,0.12);
+  padding: 6px 16px;
+  border-radius: 99px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(108,99,255,0.2);
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--text);
+  white-space: pre-line;
+}
+
+/* ── Reveal animation ── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── Animate-in (hero) ── */
+.animate-in {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.7s ease forwards;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes fadeUp { to { opacity: 1; transform: none; } }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--primary-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,99,255,0.35); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-2);
+}
+.btn-ghost:hover { background: var(--surface); border-color: var(--primary); color: var(--primary-2); }
+.btn-sm { padding: 10px 20px; font-size: 0.875rem; }
+.btn-full { width: 100%; justify-content: center; }
+
+/* ═══════════════════════════════════════════════════════════
+   INSTALL BANNER
+═══════════════════════════════════════════════════════════ */
+.install-banner {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--surface-2); border: 1px solid var(--border-2);
+  border-radius: var(--radius); padding: 14px 20px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: var(--shadow-lg); z-index: 9999;
+  font-size: 0.9rem; white-space: nowrap;
+}
+.install-banner[hidden] { display: none; }
+.btn-install { background: var(--primary); color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; }
+.btn-install-close { color: var(--text-2); font-size: 1.1rem; padding: 4px 8px; }
+
+/* ═══════════════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════════════ */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0;
+  transition: var(--transition);
+}
+.navbar.scrolled {
+  background: rgba(10,10,15,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.nav-container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.logo-text { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.03em; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.nav-links { display: flex; gap: 4px; }
+.nav-link { padding: 8px 14px; font-size: 0.9rem; color: var(--text-2); border-radius: 8px; transition: var(--transition); font-weight: 500; }
+.nav-link:hover, .nav-link.active { color: var(--text); background: var(--surface); }
+.nav-cta { background: var(--primary); color: #fff !important; }
+.nav-cta:hover { background: var(--primary-2); }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.lang-toggle {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; font-size: 0.85rem; color: var(--text-2);
+  font-weight: 600; transition: var(--transition);
+}
+.lang-toggle:hover { border-color: var(--primary); color: var(--primary-2); }
+.hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: var(--transition); }
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu {
+  display: none; flex-direction: column; gap: 4px;
+  background: rgba(10,10,15,0.97); backdrop-filter: blur(20px);
+  padding: 16px 24px 24px; border-bottom: 1px solid var(--border);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu .nav-link { padding: 12px 16px; font-size: 1rem; }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 120px 24px 80px;
+}
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(108,99,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108,99,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); pointer-events: none;
+}
+.hero-orb-1 { width: 600px; height: 600px; background: rgba(108,99,255,0.15); top: -100px; left: -150px; }
+.hero-orb-2 { width: 400px; height: 400px; background: rgba(0,212,255,0.1); bottom: -50px; right: -100px; }
+.hero-orb-3 { width: 300px; height: 300px; background: rgba(108,99,255,0.08); top: 40%; left: 50%; transform: translateX(-50%); }
+#hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-content { position: relative; z-index: 1; text-align: center; max-width: 820px; }
+
+.hero-title {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+.hero-accent {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-2);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+.hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+.hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px 40px;
+  display: inline-flex;
+}
+.stat { text-align: center; padding: 0 32px; }
+.stat-number { font-size: 2rem; font-weight: 800; color: var(--text); }
+.stat-plus { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+.stat-label { display: block; font-size: 0.8rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+.stat-divider { width: 1px; height: 50px; background: var(--border); }
+.hero-scroll { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--text-3); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--primary), transparent); animation: scrollAnim 2s ease-in-out infinite; }
+@keyframes scrollAnim { 0%,100% { opacity: 1; transform: scaleY(1); } 50% { opacity: 0.4; transform: scaleY(0.6); } }
+
+/* ═══════════════════════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════════════════════ */
+.services { background: var(--bg-2); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: var(--transition);
+}
+.service-card:hover { border-color: rgba(108,99,255,0.3); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+.service-card--featured { border-color: rgba(108,99,255,0.3); background: linear-gradient(135deg, rgba(108,99,255,0.08), var(--surface)); }
+.service-icon {
+  width: 56px; height: 56px;
+  background: rgba(108,99,255,0.12);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--primary-2);
+  margin-bottom: 20px;
+}
+.service-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.service-card p { font-size: 0.9rem; color: var(--text-2); line-height: 1.65; margin-bottom: 20px; }
+.service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.service-tags li {
+  font-size: 0.75rem; font-weight: 600;
+  background: rgba(108,99,255,0.1);
+  color: var(--primary-2);
+  padding: 4px 12px; border-radius: 99px;
+  border: 1px solid rgba(108,99,255,0.15);
+}
+.service-card--cta {
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+  background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(108,99,255,0.06));
+  border-color: rgba(0,212,255,0.2);
+  gap: 20px;
+}
+.service-card--cta p { color: var(--text-2); font-size: 1rem; margin-bottom: 0; }
+
+/* ═══════════════════════════════════════════════════════════
+   PORTFOLIO
+═══════════════════════════════════════════════════════════ */
+.portfolio { background: var(--bg); }
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+.portfolio-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.portfolio-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--border-2); }
+.portfolio-card__media { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+.portfolio-preview {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--bg-3), var(--surface-2));
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.preview-dots { display: flex; gap: 5px; }
+.preview-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--surface-2); }
+.preview-content { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.preview-bar { height: 6px; background: var(--accent); border-radius: 3px; opacity: 0.6; }
+.preview-label {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-3);
+  margin-top: auto;
+}
+.preview-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; }
+.preview-item { height: 36px; background: var(--surface); border-radius: 6px; }
+.preview-map { position: relative; height: 60px; }
+.map-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); position: absolute; }
+.map-dot-1 { top: 10px; left: 20%; }
+.map-dot-2 { bottom: 10px; right: 20%; }
+.map-line { position: absolute; width: 60%; height: 2px; background: linear-gradient(90deg, var(--accent), var(--primary)); top: 50%; left: 20%; transform: rotate(8deg); opacity: 0.5; }
+.preview-menu { display: flex; flex-direction: column; gap: 6px; }
+.menu-item { height: 10px; background: var(--surface); border-radius: 4px; }
+.menu-item.short { width: 60%; }
+.preview-sala { display: flex; align-items: center; justify-content: center; height: 60px; }
+.sala-seats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.seat { width: 16px; height: 16px; background: var(--surface); border-radius: 4px; }
+.seat.active { background: var(--primary); }
+/* CompuMobile preview */
+.preview-chat { display: flex; flex-direction: column; gap: 6px; height: 70px; }
+.chat-bubble { height: 10px; border-radius: 8px; max-width: 80%; }
+.chat-bubble.in { background: rgba(108,99,255,0.4); align-self: flex-start; }
+.chat-bubble.out { background: rgba(0,212,255,0.3); align-self: flex-end; width: 60%; }
+
+.portfolio-card__overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,10,15,0.7);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: var(--transition);
+}
+.portfolio-card:hover .portfolio-card__overlay { opacity: 1; }
+.portfolio-card__info { padding: 20px 24px 24px; }
+.portfolio-card__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.tag { font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 99px; background: var(--surface-2); color: var(--text-3); border: 1px solid var(--border); }
+.portfolio-card__info h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.portfolio-card__info p { font-size: 0.875rem; color: var(--text-2); line-height: 1.6; margin-bottom: 14px; }
+.portfolio-link { font-size: 0.85rem; font-weight: 600; color: var(--primary-2); transition: var(--transition); }
+.portfolio-link:hover { color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════════════════════ */
+.about { background: var(--bg-2); }
+.about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-visual { position: relative; }
+.about-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+.about-card--main { text-align: center; margin-bottom: 16px; }
+.about-avatar { display: flex; justify-content: center; margin-bottom: 12px; }
+.about-card__name { font-size: 1.1rem; font-weight: 700; }
+.about-card__role { font-size: 0.8rem; color: var(--primary-2); margin-bottom: 12px; font-weight: 500; }
+.about-card__skills { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.about-card__skills span { font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 99px; background: rgba(108,99,255,0.1); color: var(--primary-2); border: 1px solid rgba(108,99,255,0.15); }
+.about-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.about-card--stat { text-align: center; }
+.stat-big { display: block; font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.about-card--stat span:last-child { font-size: 0.8rem; color: var(--text-2); }
+.about-card--badge { display: flex; align-items: center; gap: 12px; }
+.badge-icon { font-size: 1.5rem; }
+.about-card--badge span { font-size: 0.85rem; color: var(--text-2); }
+.about-content p { color: var(--text-2); font-size: 0.95rem; line-height: 1.75; margin-bottom: 16px; }
+.about-values { display: flex; flex-direction: column; gap: 16px; margin: 28px 0; }
+.value { display: flex; gap: 14px; align-items: flex-start; }
+.value-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+.value strong { display: block; font-size: 0.95rem; margin-bottom: 2px; }
+.value span { font-size: 0.85rem; color: var(--text-2); }
+
+/* ═══════════════════════════════════════════════════════════
+   PROCESS
+═══════════════════════════════════════════════════════════ */
+.process { background: var(--bg); }
+.process-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+.process-step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  position: relative;
+  transition: var(--transition);
+}
+.process-step:hover { border-color: rgba(108,99,255,0.3); }
+.step-number {
+  font-size: 3rem; font-weight: 800;
+  color: rgba(108,99,255,0.15);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.step-content h3 { font-size: 1.1rem; margin-bottom: 10px; }
+.step-content p { font-size: 0.875rem; color: var(--text-2); line-height: 1.65; margin-bottom: 16px; }
+.step-details { display: flex; flex-direction: column; gap: 6px; }
+.step-details li {
+  font-size: 0.8rem; color: var(--text-3);
+  padding-left: 16px; position: relative;
+}
+.step-details li::before { content: '→'; position: absolute; left: 0; color: var(--primary); }
+
+/* ═══════════════════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════════════════ */
+.contact { background: var(--bg-2); }
+.contact-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
+.contact-info p { color: var(--text-2); font-size: 0.95rem; line-height: 1.7; margin: 16px 0 32px; }
+.contact-channels { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.contact-channel {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px;
+  transition: var(--transition);
+}
+.contact-channel:hover { border-color: var(--primary); transform: translateX(4px); }
+.contact-channel--wa:hover { border-color: #25d366; }
+.channel-icon { color: var(--primary-2); flex-shrink: 0; }
+.contact-channel--wa .channel-icon { color: #25d366; }
+.channel-label { display: block; font-size: 0.75rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; }
+.channel-value { font-size: 0.95rem; font-weight: 600; }
+.contact-availability { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-2); }
+.avail-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success); animation: pulse 2s infinite; flex-shrink: 0; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+/* Form */
+.contact-form-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+}
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-2); }
+.optional { font-weight: 400; color: var(--text-3); }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--bg-3);
+  border: 1px solid var(--border-2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: var(--text);
+  transition: var(--transition);
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236060a0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.form-group select option { background: var(--bg-3); color: var(--text); }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.15);
+}
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error { border-color: #ef4444; }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-error { font-size: 0.78rem; color: #ef4444; min-height: 1em; }
+.budget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.budget-option { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.budget-option input[type="radio"] { display: none; }
+.budget-option span {
+  padding: 8px 16px;
+  background: var(--bg-3); border: 1px solid var(--border-2);
+  border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+  color: var(--text-2); transition: var(--transition); cursor: pointer;
+}
+.budget-option input:checked + span { background: rgba(108,99,255,0.15); border-color: var(--primary); color: var(--primary-2); }
+.budget-option:hover span { border-color: var(--primary); }
+.spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.btn-loading { display: flex; align-items: center; gap: 8px; }
+.form-success {
+  text-align: center;
+  padding: 40px 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.form-success[hidden] { display: none; }
+.success-icon {
+  width: 64px; height: 64px;
+  background: rgba(34,197,94,0.12);
+  border: 2px solid var(--success);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; color: var(--success);
+}
+.form-success h3 { font-size: 1.5rem; }
+.form-success p { color: var(--text-2); font-size: 0.9rem; }
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════ */
+.footer { background: var(--bg-3); border-top: 1px solid var(--border); padding: 60px 0 0; }
+.footer-inner { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 40px; margin-bottom: 48px; }
+.footer-brand { grid-column: 1; }
+.footer-logo { margin-bottom: 12px; }
+.footer-tagline { font-size: 0.875rem; color: var(--text-3); margin-top: 8px; }
+.footer-col { display: flex; flex-direction: column; gap: 12px; }
+.footer-col-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); }
+.footer-col ul { display: flex; flex-direction: column; gap: 8px; }
+.footer-col a { font-size: 0.875rem; color: var(--text-2); transition: var(--transition); }
+.footer-col a:hover { color: var(--primary-2); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 0; border-top: 1px solid var(--border);
+  font-size: 0.8rem; color: var(--text-3);
+}
+.footer-made { }
+
+/* ═══════════════════════════════════════════════════════════
+   BACK TO TOP
+═══════════════════════════════════════════════════════════ */
+.back-to-top {
+  position: fixed; bottom: 24px; right: 24px; z-index: 999;
+  width: 44px; height: 44px;
+  background: var(--primary);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; opacity: 0; pointer-events: none;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+.back-to-top.visible { opacity: 1; pointer-events: auto; }
+.back-to-top:hover { background: var(--primary-2); transform: translateY(-2px); }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .about-inner { grid-template-columns: 1fr; gap: 48px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 768px) {
+  .section { padding: 72px 0; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .services-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-stats { padding: 20px 24px; }
+  .stat { padding: 0 20px; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .about-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .hero-actions { flex-direction: column; align-items: stretch; text-align: center; }
+  .hero-stats { flex-direction: column; gap: 16px; padding: 24px; }
+  .stat-divider { width: 60px; height: 1px; }
+  .contact-form-wrap { padding: 24px; }
+}
+  </style>
+</head>
+<body>
+
+  <!-- PWA Install Banner -->
+  <div id="install-banner" class="install-banner" role="alert" aria-live="polite" hidden>
+    <span data-i18n="pwa_install_msg">Instalá Pegasus en tu dispositivo</span>
+    <button id="install-btn" class="btn-install" data-i18n="pwa_install_btn">Instalar</button>
+    <button id="install-close" class="btn-install-close" aria-label="Cerrar">✕</button>
+  </div>
+
+  <!-- ═══════ NAVIGATION ═══════ -->
+  <header class="navbar" role="banner">
+    <nav class="nav-container" aria-label="Navegación principal">
+      <a href="#hero" class="nav-logo" aria-label="Pegasus - Inicio">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 2L28 8V18C28 23.5 22.5 28.5 16 30C9.5 28.5 4 23.5 4 18V8L16 2Z" fill="url(#logo-grad)"/>
+          <path d="M12 20L10 14L16 10L22 14L20 20" stroke="white" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+          <path d="M16 10V6M13 8L16 10L19 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="logo-grad" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#00D4FF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-text">Pegasus</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#services" class="nav-link" data-i18n="nav_services">Servicios</a></li>
+        <li><a href="#portfolio" class="nav-link" data-i18n="nav_portfolio">Portfolio</a></li>
+        <li><a href="#about" class="nav-link" data-i18n="nav_about">Nosotros</a></li>
+        <li><a href="#process" class="nav-link" data-i18n="nav_process">Proceso</a></li>
+        <li><a href="#contact" class="nav-link nav-cta" data-i18n="nav_contact">Contacto</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="lang-toggle" id="lang-toggle" aria-label="Cambiar idioma">
+          <span class="lang-flag">🌐</span>
+          <span class="lang-label" id="lang-label">ES</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menú móvil">
+      <ul role="list">
+        <li><a href="#services" class="nav-link" data-i18n="nav_services">Servicios</a></li>
+        <li><a href="#portfolio" class="nav-link" data-i18n="nav_portfolio">Portfolio</a></li>
+        <li><a href="#about" class="nav-link" data-i18n="nav_about">Nosotros</a></li>
+        <li><a href="#process" class="nav-link" data-i18n="nav_process">Proceso</a></li>
+        <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ═══════ HERO ═══════ -->
+    <section id="hero" class="hero" aria-labelledby="hero-heading">
+      <div class="hero-bg">
+        <div class="hero-grid"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      </div>
+
+      <div class="hero-content">
+        <h1 id="hero-heading" class="hero-title animate-in" style="--delay: 0.1s">
+          <span data-i18n="hero_title_1">Software que</span>
+          <em class="hero-accent" data-i18n="hero_title_2"> escala</em>
+          <span data-i18n="hero_title_3"> con tu negocio</span>
+        </h1>
+
+        <p class="hero-subtitle animate-in" style="--delay: 0.2s" data-i18n="hero_subtitle">
+          Transformamos ideas en productos digitales a medida. Desde startups hasta empresas consolidadas, construimos el software que tu empresa necesita para crecer.
+        </p>
+
+        <div class="hero-actions animate-in" style="--delay: 0.3s">
+          <a href="#contact" class="btn btn-primary">
+            <span data-i18n="hero_cta_primary">Empezá tu proyecto</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#portfolio" class="btn btn-ghost">
+            <span data-i18n="hero_cta_secondary">Ver proyectos</span>
+          </a>
+        </div>
+
+        <div class="hero-stats animate-in" style="--delay: 0.4s">
+          <div class="stat">
+            <span class="stat-number" data-count="15">0</span><span class="stat-plus">+</span>
+            <span class="stat-label" data-i18n="stat_projects">Proyectos</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat">
+            <span class="stat-number" data-count="100">0</span><span class="stat-plus">%</span>
+            <span class="stat-label" data-i18n="stat_satisfaction">Satisfacción</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat">
+            <span class="stat-number" data-count="5">0</span><span class="stat-plus">+</span>
+            <span class="stat-label" data-i18n="stat_years">Años de exp.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="scroll-line"></div>
+        <span>scroll</span>
+      </div>
+    </section>
+
+    <!-- ═══════ SERVICES ═══════ -->
+    <section id="services" class="services section" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="services_tag">Lo que hacemos</span>
+          <h2 id="services-heading" class="section-title" data-i18n="services_title">Servicios diseñados&#10;para hacer crecer tu empresa</h2>
+        </div>
+        <div class="services-grid">
+          <article class="service-card service-card--featured">
+            <div class="service-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="3" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M9 24H19M14 20V24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 10L11 13L8 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 16H18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <h3 data-i18n="service_web_title">Desarrollo Web a Medida</h3>
+            <p data-i18n="service_web_desc">Aplicaciones web robustas y escalables, desde MVPs hasta sistemas empresariales complejos. React, Next.js, Node.js y más.</p>
+            <ul class="service-tags" aria-label="Tecnologías"><li>React / Next.js</li><li>Node.js</li><li>TypeScript</li></ul>
+          </article>
+          <article class="service-card">
+            <div class="service-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="7" y="2" width="14" height="24" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="21" r="1.5" fill="currentColor"/><path d="M11 6H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <h3 data-i18n="service_mobile_title">Apps Móviles</h3>
+            <p data-i18n="service_mobile_desc">Aplicaciones nativas y multiplataforma que brindan experiencias excepcionales en iOS y Android.</p>
+            <ul class="service-tags" aria-label="Tecnologías"><li>React Native</li><li>PWA</li><li>iOS / Android</li></ul>
+          </article>
+          <article class="service-card">
+            <div class="service-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M14 3L25 8.5V19.5L14 25L3 19.5V8.5L14 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 3V25M3 8.5L14 14M25 8.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+            <h3 data-i18n="service_ecomm_title">E-commerce & Marketplaces</h3>
+            <p data-i18n="service_ecomm_desc">Tiendas online de alto rendimiento, integraciones de pago, gestión de inventario y experiencias de compra que convierten.</p>
+            <ul class="service-tags" aria-label="Tecnologías"><li>Shopify</li><li>MercadoPago</li><li>Custom</li></ul>
+          </article>
+          <article class="service-card">
+            <div class="service-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="1.5"/><path d="M8 14H20M14 8V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <h3 data-i18n="service_api_title">APIs & Integraciones</h3>
+            <p data-i18n="service_api_desc">Conectamos tus sistemas existentes con nuevas herramientas. Diseño e implementación de APIs RESTful y microservicios.</p>
+            <ul class="service-tags" aria-label="Tecnologías"><li>REST / GraphQL</li><li>Webhooks</li><li>Microservicios</li></ul>
+          </article>
+          <article class="service-card">
+            <div class="service-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="16" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="4" y="16" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="16" y="16" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+            <h3 data-i18n="service_ux_title">UX/UI & Diseño</h3>
+            <p data-i18n="service_ux_desc">Interfaces que los usuarios aman. Diseño centrado en la experiencia, prototipado rápido y sistemas de diseño escalables.</p>
+            <ul class="service-tags" aria-label="Tecnologías"><li>Figma</li><li>Design System</li><li>Prototyping</li></ul>
+          </article>
+          <article class="service-card service-card--cta">
+            <p data-i18n="service_custom_desc">¿Necesitás algo que no está en la lista? Conversemos sobre tu proyecto.</p>
+            <a href="#contact" class="btn btn-primary" data-i18n="service_custom_cta">Hablemos →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ PORTFOLIO ═══════ -->
+    <section id="portfolio" class="portfolio section" aria-labelledby="portfolio-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="portfolio_tag">Proyectos reales</span>
+          <h2 id="portfolio-heading" class="section-title" data-i18n="portfolio_title">Trabajo que&#10;habla por sí solo</h2>
+        </div>
+        <div class="portfolio-grid">
+
+          <!-- E-Commerce -->
+          <article class="portfolio-card">
+            <div class="portfolio-card__media">
+              <div class="portfolio-preview" style="--accent: #6C63FF">
+                <div class="preview-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="preview-content">
+                  <div class="preview-bar" style="width:60%"></div>
+                  <div class="preview-grid"><div class="preview-item"></div><div class="preview-item"></div><div class="preview-item"></div></div>
+                  <span class="preview-label">E-Commerce</span>
+                </div>
+              </div>
+              <div class="portfolio-card__overlay"><a href="https://ecommerce-typescript-x6ux.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" data-i18n="portfolio_view">Ver proyecto</a></div>
+            </div>
+            <div class="portfolio-card__info">
+              <div class="portfolio-card__tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">E-Commerce</span></div>
+              <h3 data-i18n="portfolio_ecomm_title">E-Commerce TypeScript</h3>
+              <p data-i18n="portfolio_ecomm_desc">Tienda online completa con carrito, pagos integrados y gestión de productos. Stack moderno con TypeScript end-to-end.</p>
+              <a href="https://ecommerce-typescript-x6ux.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-link">ecommerce-typescript ↗</a>
+            </div>
+          </article>
+
+          <!-- ML Chofer -->
+          <article class="portfolio-card">
+            <div class="portfolio-card__media">
+              <div class="portfolio-preview" style="--accent: #00D4FF">
+                <div class="preview-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="preview-content">
+                  <div class="preview-bar" style="width:45%"></div>
+                  <div class="preview-map" aria-hidden="true">
+                    <div class="map-dot map-dot-1"></div>
+                    <div class="map-dot map-dot-2"></div>
+                    <div class="map-line"></div>
+                  </div>
+                  <span class="preview-label">App de Viajes</span>
+                </div>
+              </div>
+              <div class="portfolio-card__overlay"><a href="https://ml-chofer-beta.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" data-i18n="portfolio_view">Ver proyecto</a></div>
+            </div>
+            <div class="portfolio-card__info">
+              <div class="portfolio-card__tags"><span class="tag">React</span><span class="tag">Maps API</span><span class="tag">Real-time</span></div>
+              <h3 data-i18n="portfolio_chofer_title">ML Chofer</h3>
+              <p data-i18n="portfolio_chofer_desc">Plataforma de gestión de viajes en tiempo real. Seguimiento de conductores, asignación inteligente de rutas y panel de control.</p>
+              <a href="https://ml-chofer-beta.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-link">ml-chofer-beta ↗</a>
+            </div>
+          </article>
+
+          <!-- Lo de Juan -->
+          <article class="portfolio-card">
+            <div class="portfolio-card__media">
+              <div class="portfolio-preview" style="--accent: #FF6B6B">
+                <div class="preview-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="preview-content">
+                  <div class="preview-bar" style="width:75%"></div>
+                  <div class="preview-menu" aria-hidden="true">
+                    <div class="menu-item"></div><div class="menu-item"></div><div class="menu-item short"></div>
+                  </div>
+                  <span class="preview-label">Restaurante</span>
+                </div>
+              </div>
+              <div class="portfolio-card__overlay"><a href="https://lodejuan.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" data-i18n="portfolio_view">Ver proyecto</a></div>
+            </div>
+            <div class="portfolio-card__info">
+              <div class="portfolio-card__tags"><span class="tag">Next.js</span><span class="tag">Restaurant</span><span class="tag">SEO</span></div>
+              <h3 data-i18n="portfolio_juan_title">Lo de Juan</h3>
+              <p data-i18n="portfolio_juan_desc">Landing page para restaurante con menú digital, sistema de reservas y optimización SEO para búsquedas locales.</p>
+              <a href="https://lodejuan.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-link">lodejuan ↗</a>
+            </div>
+          </article>
+
+          <!-- Encaja Negra -->
+          <article class="portfolio-card">
+            <div class="portfolio-card__media">
+              <div class="portfolio-preview" style="--accent: #A8E063">
+                <div class="preview-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="preview-content">
+                  <div class="preview-bar" style="width:55%"></div>
+                  <div class="preview-sala" aria-hidden="true">
+                    <div class="sala-seats">
+                      <div class="seat"></div><div class="seat"></div><div class="seat active"></div>
+                      <div class="seat"></div><div class="seat active"></div><div class="seat"></div>
+                    </div>
+                  </div>
+                  <span class="preview-label">Sala de Eventos</span>
+                </div>
+              </div>
+              <div class="portfolio-card__overlay"><a href="https://encajanegra-sala.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" data-i18n="portfolio_view">Ver proyecto</a></div>
+            </div>
+            <div class="portfolio-card__info">
+              <div class="portfolio-card__tags"><span class="tag">React</span><span class="tag">Reservas</span><span class="tag">UI/UX</span></div>
+              <h3 data-i18n="portfolio_sala_title">Encaja Negra Sala</h3>
+              <p data-i18n="portfolio_sala_desc">Sistema de reservas para sala de eventos con selección de asientos visual, calendario dinámico y confirmación en tiempo real.</p>
+              <a href="https://encajanegra-sala.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-link">encajanegra-sala ↗</a>
+            </div>
+          </article>
+
+          <!-- CompuMobile Repair — NEW -->
+          <article class="portfolio-card">
+            <div class="portfolio-card__media">
+              <div class="portfolio-preview" style="--accent: #F97316">
+                <div class="preview-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <div class="preview-content">
+                  <div class="preview-bar" style="width:70%; background: #F97316;"></div>
+                  <div class="preview-chat" aria-hidden="true">
+                    <div class="chat-bubble in" style="background: rgba(249,115,22,0.35);"></div>
+                    <div class="chat-bubble out" style="background: rgba(249,115,22,0.2);"></div>
+                    <div class="chat-bubble in" style="background: rgba(249,115,22,0.35); width:55%;"></div>
+                  </div>
+                  <span class="preview-label">Reparación Móviles</span>
+                </div>
+              </div>
+              <div class="portfolio-card__overlay"><a href="https://compumobile-repair.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" data-i18n="portfolio_view">Ver proyecto</a></div>
+            </div>
+            <div class="portfolio-card__info">
+              <div class="portfolio-card__tags"><span class="tag">AI Chatbot</span><span class="tag">WhatsApp</span><span class="tag">React</span></div>
+              <h3 data-i18n="portfolio_compumobile_title">CompuMobile Repair</h3>
+              <p data-i18n="portfolio_compumobile_desc">Chatbot interactivo para negocios de reparación de celulares. El usuario obtiene un presupuesto al instante y puede enviarlo por WhatsApp para coordinarlo.</p>
+              <a href="https://compumobile-repair.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-link">compumobile-repair ↗</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ ABOUT ═══════ -->
+    <section id="about" class="about section" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about-inner">
+          <div class="about-visual" aria-hidden="true">
+            <div class="about-card about-card--main">
+              <div class="about-avatar">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="22" r="12" stroke="url(#av-grad)" stroke-width="2"/><path d="M10 50C10 39 18 32 30 32C42 32 50 39 50 50" stroke="url(#av-grad)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="av-grad" x1="10" y1="10" x2="50" y2="50" gradientUnits="userSpaceOnUse"><stop stop-color="#6C63FF"/><stop offset="1" stop-color="#00D4FF"/></linearGradient></defs></svg>
+              </div>
+              <p class="about-card__name">Darío Andrada</p>
+              <p class="about-card__role" data-i18n="about_role">Founder & Lead Developer</p>
+              <div class="about-card__skills"><span>React</span><span>Node.js</span><span>TypeScript</span><span>AWS</span></div>
+            </div>
+            <div class="about-row">
+              <div class="about-card about-card--stat">
+                <span class="stat-big">10+</span>
+                <span data-i18n="about_stat_tech">Tecnologías dominadas</span>
+              </div>
+              <div class="about-card about-card--badge">
+                <div class="badge-icon">🚀</div>
+                <span data-i18n="about_badge">Escalo equipos según el proyecto</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-content">
+            <span class="section-tag" data-i18n="about_tag">Sobre Pegasus</span>
+            <h2 id="about-heading" class="section-title" data-i18n="about_title">Una consultora que&#10;trabaja como socia tuya</h2>
+            <p data-i18n="about_p1">Soy Darío, desarrollador full stack con más de 5 años de experiencia transformando ideas en productos digitales. Fundé Pegasus para ofrecer a las pymes acceso a desarrollo de software de calidad enterprise, sin la burocracia de las grandes consultoras.</p>
+            <p data-i18n="about_p2">Trabajo solo en proyectos pequeños para mantener la agilidad y la atención personalizada, y escalo equipos de desarrolladores para proyectos de mayor envergadura. Siempre con el mismo compromiso: código limpio, entregas a tiempo y comunicación transparente.</p>
+            <div class="about-values">
+              <div class="value"><div class="value-icon" aria-hidden="true">⚡</div><div><strong data-i18n="value_agile">Agilidad</strong><span data-i18n="value_agile_desc">Iteraciones rápidas, feedback continuo</span></div></div>
+              <div class="value"><div class="value-icon" aria-hidden="true">🔒</div><div><strong data-i18n="value_trust">Confianza</strong><span data-i18n="value_trust_desc">Comunicación clara y entregables reales</span></div></div>
+              <div class="value"><div class="value-icon" aria-hidden="true">📈</div><div><strong data-i18n="value_scale">Escalabilidad</strong><span data-i18n="value_scale_desc">Soluciones que crecen con tu negocio</span></div></div>
+            </div>
+            <a href="#contact" class="btn btn-primary" data-i18n="about_cta">Trabajemos juntos →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ PROCESS ═══════ -->
+    <section id="process" class="process section" aria-labelledby="process-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="process_tag">Cómo trabajamos</span>
+          <h2 id="process-heading" class="section-title" data-i18n="process_title">De la idea al producto,&#10;sin sorpresas</h2>
+        </div>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-number" aria-hidden="true">01</div>
+            <div class="step-content">
+              <h3 data-i18n="step1_title">Descubrimiento</h3>
+              <p data-i18n="step1_desc">Entendemos tu negocio, objetivos y desafíos. Analizamos el mercado y definimos los requerimientos del proyecto con claridad.</p>
+              <ul class="step-details" aria-label="Actividades"><li data-i18n="step1_a">Entrevistas y workshops</li><li data-i18n="step1_b">Análisis de competencia</li><li data-i18n="step1_c">Definición de alcance</li></ul>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number" aria-hidden="true">02</div>
+            <div class="step-content">
+              <h3 data-i18n="step2_title">Diseño & Arquitectura</h3>
+              <p data-i18n="step2_desc">Prototipamos la solución, diseñamos la arquitectura técnica y validamos con vos antes de escribir una línea de código.</p>
+              <ul class="step-details" aria-label="Actividades"><li data-i18n="step2_a">Wireframes & Prototipos</li><li data-i18n="step2_b">Diseño de base de datos</li><li data-i18n="step2_c">Stack técnico</li></ul>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number" aria-hidden="true">03</div>
+            <div class="step-content">
+              <h3 data-i18n="step3_title">Desarrollo Iterativo</h3>
+              <p data-i18n="step3_desc">Ciclos de desarrollo cortos con entregas parciales. Siempre sabés en qué punto estamos y tenés visibilidad total del avance.</p>
+              <ul class="step-details" aria-label="Actividades"><li data-i18n="step3_a">Sprints semanales</li><li data-i18n="step3_b">Demos regulares</li><li data-i18n="step3_c">Ajustes continuos</li></ul>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-number" aria-hidden="true">04</div>
+            <div class="step-content">
+              <h3 data-i18n="step4_title">Lanzamiento & Soporte</h3>
+              <p data-i18n="step4_desc">Deploy profesional, pruebas de calidad y acompañamiento post-lanzamiento. Tu producto en producción, funcionando desde el día 1.</p>
+              <ul class="step-details" aria-label="Actividades"><li data-i18n="step4_a">QA y Testing</li><li data-i18n="step4_b">Deploy automatizado</li><li data-i18n="step4_c">Soporte continuo</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ CONTACT ═══════ -->
+    <section id="contact" class="contact section" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-inner">
+          <div class="contact-info">
+            <span class="section-tag" data-i18n="contact_tag">Hablemos</span>
+            <h2 id="contact-heading" class="section-title" data-i18n="contact_title">Contanos tu proyecto.&#10;Es gratis.</h2>
+            <p data-i18n="contact_subtitle">Ya sea que tengas una idea clara o apenas el concepto, estamos para ayudarte a darle forma y hacerlo realidad.</p>
+            <div class="contact-channels">
+              <a href="mailto:dandrada23@gmail.com" class="contact-channel" aria-label="Email: dandrada23@gmail.com">
+                <div class="channel-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="5" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 8L11 13L20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                <div><span class="channel-label">Email</span><span class="channel-value">dandrada23@gmail.com</span></div>
+              </a>
+              <a href="https://wa.me/541150610043" target="_blank" rel="noopener noreferrer" class="contact-channel contact-channel--wa" aria-label="WhatsApp: +54 11 5061 0043">
+                <div class="channel-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C6.03 2 2 6.03 2 11C2 12.7 2.46 14.3 3.27 15.67L2 20L6.47 18.75C7.8 19.51 9.35 19.95 11 19.95C15.97 19.95 20 15.92 20 10.95C20 6.03 15.97 2 11 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 9C8 9 8 7.5 9.5 7.5C10.5 7.5 11 8.5 11 9C11 9.5 10.5 10.5 9.5 11L8 12.5C8 12.5 9.5 14.5 12.5 14.5C13.5 14.5 14 14 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div><span class="channel-label">WhatsApp</span><span class="channel-value">+54 11 5061 0043</span></div>
+              </a>
+            </div>
+            <div class="contact-availability">
+              <span class="avail-dot" aria-hidden="true"></span>
+              <span data-i18n="contact_avail">Respondemos en menos de 24 horas hábiles</span>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-wrap">
+            <form id="contact-form" class="contact-form" novalidate aria-label="Formulario de contacto">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name" data-i18n="form_name">Nombre</label>
+                  <input type="text" id="name" name="name" autocomplete="name" required data-i18n-placeholder="form_name_ph" placeholder="Tu nombre" aria-required="true" />
+                  <span class="form-error" role="alert" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                  <label for="email" data-i18n="form_email">Email</label>
+                  <input type="email" id="email" name="email" autocomplete="email" required data-i18n-placeholder="form_email_ph" placeholder="tu@empresa.com" aria-required="true" />
+                  <span class="form-error" role="alert" aria-live="polite"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="company" data-i18n="form_company">Empresa <span class="optional" data-i18n="form_optional">(opcional)</span></label>
+                <input type="text" id="company" name="company" autocomplete="organization" data-i18n-placeholder="form_company_ph" placeholder="Nombre de tu empresa" />
+              </div>
+              <div class="form-group">
+                <label for="service" data-i18n="form_service">¿Qué necesitás?</label>
+                <select id="service" name="service" required aria-required="true">
+                  <option value="" data-i18n="form_service_ph">Seleccioná un servicio</option>
+                  <option value="web" data-i18n="form_service_web">Desarrollo Web a Medida</option>
+                  <option value="mobile" data-i18n="form_service_mobile">App Móvil</option>
+                  <option value="ecommerce" data-i18n="form_service_ecomm">E-Commerce</option>
+                  <option value="api" data-i18n="form_service_api">API / Integración</option>
+                  <option value="ux" data-i18n="form_service_ux">UX/UI & Diseño</option>
+                  <option value="other" data-i18n="form_service_other">Otro</option>
+                </select>
+                <span class="form-error" role="alert" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="message" data-i18n="form_message">Contanos sobre tu proyecto</label>
+                <textarea id="message" name="message" rows="4" required aria-required="true" data-i18n-placeholder="form_message_ph" placeholder="Describí brevemente qué necesitás, en qué etapa estás y cuál es tu timeline..."></textarea>
+                <span class="form-error" role="alert" aria-live="polite"></span>
+              </div>
+              <div class="form-group form-group--budget">
+                <label data-i18n="form_budget">Presupuesto estimado</label>
+                <div class="budget-options" role="group" aria-label="Opciones de presupuesto">
+                  <label class="budget-option"><input type="radio" name="budget" value="<5k" /><span>&lt; $5K USD</span></label>
+                  <label class="budget-option"><input type="radio" name="budget" value="5-15k" /><span>$5K – $15K</span></label>
+                  <label class="budget-option"><input type="radio" name="budget" value="15-50k" /><span>$15K – $50K</span></label>
+                  <label class="budget-option"><input type="radio" name="budget" value=">50k" /><span>&gt; $50K</span></label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+                <span class="btn-text" data-i18n="form_submit">Enviar mensaje</span>
+                <span class="btn-loading" hidden aria-hidden="true">
+                  <span class="spinner"></span>
+                  <span data-i18n="form_sending">Enviando...</span>
+                </span>
+              </button>
+            </form>
+            <div class="form-success" id="form-success" hidden role="status" aria-live="polite">
+              <div class="success-icon" aria-hidden="true">✓</div>
+              <h3 data-i18n="form_success_title">¡Mensaje recibido!</h3>
+              <p data-i18n="form_success_msg">Te contactaremos a la brevedad. Mientras tanto, podés escribirnos por WhatsApp si es urgente.</p>
+              <a href="https://wa.me/541150610043" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">WhatsApp →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo footer-logo" aria-label="Pegasus - Inicio">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 2L28 8V18C28 23.5 22.5 28.5 16 30C9.5 28.5 4 23.5 4 18V8L16 2Z" fill="url(#footer-logo-grad)"/>
+              <path d="M12 20L10 14L16 10L22 14L20 20" stroke="white" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+              <path d="M16 10V6M13 8L16 10L19 8" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs><linearGradient id="footer-logo-grad" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#00D4FF"/></linearGradient></defs>
+            </svg>
+            <span class="logo-text">Pegasus</span>
+          </a>
+          <p class="footer-tagline" data-i18n="footer_tagline">Software a medida para empresas que quieren crecer.</p>
+        </div>
+        <nav class="footer-col" aria-label="Servicios">
+          <span class="footer-col-title" data-i18n="footer_services">Servicios</span>
+          <ul role="list">
+            <li><a href="#services" data-i18n="service_web_title">Desarrollo Web</a></li>
+            <li><a href="#services" data-i18n="service_mobile_title">Apps Móviles</a></li>
+            <li><a href="#services" data-i18n="service_ecomm_title">E-Commerce</a></li>
+            <li><a href="#services" data-i18n="service_api_title">APIs</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Empresa">
+          <span class="footer-col-title" data-i18n="footer_company">Empresa</span>
+          <ul role="list">
+            <li><a href="#about" data-i18n="nav_about">Nosotros</a></li>
+            <li><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a></li>
+            <li><a href="#process" data-i18n="nav_process">Proceso</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Contacto">
+          <span class="footer-col-title" data-i18n="footer_contact">Contacto</span>
+          <ul role="list">
+            <li><a href="mailto:dandrada23@gmail.com">dandrada23@gmail.com</a></li>
+            <li><a href="https://wa.me/541150610043" target="_blank" rel="noopener noreferrer">+54 11 5061 0043</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="footer-year"></span> Pegasus IT. <span data-i18n="footer_rights">Todos los derechos reservados.</span></p>
+        <p class="footer-made" data-i18n="footer_made">Hecho con ❤️ en Argentina</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Volver arriba" title="Volver arriba">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 14V4M9 4L4 9M9 4L14 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script>
+'use strict';
+
+/* ═══════════════════════════════════════════════════
+   I18N
+═══════════════════════════════════════════════════ */
+const translations = {
+  es: {
+    nav_services:'Servicios', nav_portfolio:'Portfolio', nav_about:'Nosotros', nav_process:'Proceso', nav_contact:'Contacto',
+    hero_title_1:'Software que', hero_title_2:'escala', hero_title_3:'con tu negocio',
+    hero_subtitle:'Transformamos ideas en productos digitales a medida. Desde startups hasta empresas consolidadas, construimos el software que tu empresa necesita para crecer.',
+    hero_cta_primary:'Empezá tu proyecto', hero_cta_secondary:'Ver proyectos',
+    stat_projects:'Proyectos', stat_satisfaction:'Satisfacción', stat_years:'Años de exp.',
+    services_tag:'Lo que hacemos', services_title:'Servicios diseñados\npara hacer crecer tu empresa',
+    service_web_title:'Desarrollo Web a Medida', service_web_desc:'Aplicaciones web robustas y escalables, desde MVPs hasta sistemas empresariales complejos. React, Next.js, Node.js y más.',
+    service_mobile_title:'Apps Móviles', service_mobile_desc:'Aplicaciones nativas y multiplataforma que brindan experiencias excepcionales en iOS y Android.',
+    service_ecomm_title:'E-commerce & Marketplaces', service_ecomm_desc:'Tiendas online de alto rendimiento, integraciones de pago, gestión de inventario y experiencias de compra que convierten.',
+    service_api_title:'APIs & Integraciones', service_api_desc:'Conectamos tus sistemas existentes con nuevas herramientas. Diseño e implementación de APIs RESTful y microservicios.',
+    service_ux_title:'UX/UI & Diseño', service_ux_desc:'Interfaces que los usuarios aman. Diseño centrado en la experiencia, prototipado rápido y sistemas de diseño escalables.',
+    service_custom_desc:'¿Necesitás algo que no está en la lista? Conversemos sobre tu proyecto.', service_custom_cta:'Hablemos →',
+    portfolio_tag:'Proyectos reales', portfolio_title:'Trabajo que\nhabla por sí solo', portfolio_view:'Ver proyecto',
+    portfolio_ecomm_title:'E-Commerce TypeScript', portfolio_ecomm_desc:'Tienda online completa con carrito, pagos integrados y gestión de productos. Stack moderno con TypeScript end-to-end.',
+    portfolio_chofer_title:'ML Chofer', portfolio_chofer_desc:'Plataforma de gestión de viajes en tiempo real. Seguimiento de conductores, asignación inteligente de rutas y panel de control.',
+    portfolio_juan_title:'Lo de Juan', portfolio_juan_desc:'Landing page para restaurante con menú digital, sistema de reservas y optimización SEO para búsquedas locales.',
+    portfolio_sala_title:'Encaja Negra Sala', portfolio_sala_desc:'Sistema de reservas para sala de eventos con selección de asientos visual, calendario dinámico y confirmación en tiempo real.',
+    portfolio_compumobile_title:'CompuMobile Repair', portfolio_compumobile_desc:'Chatbot interactivo para negocios de reparación de celulares. El usuario obtiene un presupuesto al instante y puede enviarlo por WhatsApp para coordinarlo.',
+    about_tag:'Sobre Pegasus', about_title:'Una consultora que\ntrabaja como socia tuya',
+    about_role:'Founder & Lead Developer', about_stat_tech:'Tecnologías dominadas', about_badge:'Escalo equipos según el proyecto',
+    about_p1:'Soy Darío, desarrollador full stack con más de 5 años de experiencia transformando ideas en productos digitales. Fundé Pegasus para ofrecer a las pymes acceso a desarrollo de software de calidad enterprise, sin la burocracia de las grandes consultoras.',
+    about_p2:'Trabajo solo en proyectos pequeños para mantener la agilidad y la atención personalizada, y escalo equipos de desarrolladores para proyectos de mayor envergadura. Siempre con el mismo compromiso: código limpio, entregas a tiempo y comunicación transparente.',
+    about_cta:'Trabajemos juntos →',
+    value_agile:'Agilidad', value_agile_desc:'Iteraciones rápidas, feedback continuo',
+    value_trust:'Confianza', value_trust_desc:'Comunicación clara y entregables reales',
+    value_scale:'Escalabilidad', value_scale_desc:'Soluciones que crecen con tu negocio',
+    process_tag:'Cómo trabajamos', process_title:'De la idea al producto,\nsin sorpresas',
+    step1_title:'Descubrimiento', step1_desc:'Entendemos tu negocio, objetivos y desafíos. Analizamos el mercado y definimos los requerimientos del proyecto con claridad.',
+    step1_a:'Entrevistas y workshops', step1_b:'Análisis de competencia', step1_c:'Definición de alcance',
+    step2_title:'Diseño & Arquitectura', step2_desc:'Prototipamos la solución, diseñamos la arquitectura técnica y validamos con vos antes de escribir una línea de código.',
+    step2_a:'Wireframes & Prototipos', step2_b:'Diseño de base de datos', step2_c:'Stack técnico',
+    step3_title:'Desarrollo Iterativo', step3_desc:'Ciclos de desarrollo cortos con entregas parciales. Siempre sabés en qué punto estamos y tenés visibilidad total del avance.',
+    step3_a:'Sprints semanales', step3_b:'Demos regulares', step3_c:'Ajustes continuos',
+    step4_title:'Lanzamiento & Soporte', step4_desc:'Deploy profesional, pruebas de calidad y acompañamiento post-lanzamiento. Tu producto en producción, funcionando desde el día 1.',
+    step4_a:'QA y Testing', step4_b:'Deploy automatizado', step4_c:'Soporte continuo',
+    contact_tag:'Hablemos', contact_title:'Contanos tu proyecto.\nEs gratis.',
+    contact_subtitle:'Ya sea que tengas una idea clara o apenas el concepto, estamos para ayudarte a darle forma y hacerlo realidad.',
+    contact_avail:'Respondemos en menos de 24 horas hábiles',
+    form_name:'Nombre', form_name_ph:'Tu nombre', form_email:'Email', form_email_ph:'tu@empresa.com',
+    form_company:'Empresa', form_optional:'(opcional)', form_company_ph:'Nombre de tu empresa',
+    form_service:'¿Qué necesitás?', form_service_ph:'Seleccioná un servicio',
+    form_service_web:'Desarrollo Web a Medida', form_service_mobile:'App Móvil', form_service_ecomm:'E-Commerce',
+    form_service_api:'API / Integración', form_service_ux:'UX/UI & Diseño', form_service_other:'Otro',
+    form_message:'Contanos sobre tu proyecto', form_message_ph:'Describí brevemente qué necesitás, en qué etapa estás y cuál es tu timeline...',
+    form_budget:'Presupuesto estimado', form_submit:'Enviar mensaje', form_sending:'Enviando...',
+    form_success_title:'¡Mensaje recibido!', form_success_msg:'Te contactaremos a la brevedad. Mientras tanto, podés escribirnos por WhatsApp si es urgente.',
+    val_name_required:'Por favor ingresá tu nombre', val_name_short:'El nombre debe tener al menos 2 caracteres',
+    val_email_required:'Por favor ingresá tu email', val_email_invalid:'Por favor ingresá un email válido',
+    val_service_required:'Por favor seleccioná un servicio', val_message_required:'Por favor describí tu proyecto',
+    val_message_short:'El mensaje debe tener al menos 20 caracteres',
+    footer_tagline:'Software a medida para empresas que quieren crecer.',
+    footer_services:'Servicios', footer_company:'Empresa', footer_contact:'Contacto',
+    footer_rights:'Todos los derechos reservados.', footer_made:'Hecho con ❤️ en Argentina',
+    pwa_install_msg:'Instalá Pegasus en tu dispositivo', pwa_install_btn:'Instalar',
+  },
+  en: {
+    nav_services:'Services', nav_portfolio:'Portfolio', nav_about:'About', nav_process:'Process', nav_contact:'Contact',
+    hero_title_1:'Software that', hero_title_2:'scales', hero_title_3:'with your business',
+    hero_subtitle:'We transform ideas into custom digital products. From startups to established companies, we build the software your business needs to grow.',
+    hero_cta_primary:'Start your project', hero_cta_secondary:'View projects',
+    stat_projects:'Projects', stat_satisfaction:'Satisfaction', stat_years:'Years of exp.',
+    services_tag:'What we do', services_title:'Services designed\nto grow your business',
+    service_web_title:'Custom Web Development', service_web_desc:'Robust and scalable web applications, from MVPs to complex enterprise systems. React, Next.js, Node.js and more.',
+    service_mobile_title:'Mobile Apps', service_mobile_desc:'Native and cross-platform applications delivering exceptional experiences on iOS and Android.',
+    service_ecomm_title:'E-commerce & Marketplaces', service_ecomm_desc:'High-performance online stores, payment integrations, inventory management, and converting shopping experiences.',
+    service_api_title:'APIs & Integrations', service_api_desc:'We connect your existing systems with new tools. RESTful API design and implementation and microservices.',
+    service_ux_title:'UX/UI & Design', service_ux_desc:'Interfaces users love. Experience-centered design, rapid prototyping, and scalable design systems.',
+    service_custom_desc:"Need something not on the list? Let's talk about your project.", service_custom_cta:'Get in touch →',
+    portfolio_tag:'Real projects', portfolio_title:'Work that\nspeaks for itself', portfolio_view:'View project',
+    portfolio_ecomm_title:'TypeScript E-Commerce', portfolio_ecomm_desc:'Full online store with cart, integrated payments, and product management. Modern stack with end-to-end TypeScript.',
+    portfolio_chofer_title:'ML Chofer', portfolio_chofer_desc:'Real-time ride management platform. Driver tracking, smart route assignment, and control panel.',
+    portfolio_juan_title:'Lo de Juan', portfolio_juan_desc:'Restaurant landing page with digital menu, reservation system, and SEO optimization for local searches.',
+    portfolio_sala_title:'Encaja Negra Sala', portfolio_sala_desc:'Event venue booking system with visual seat selection, dynamic calendar, and real-time confirmation.',
+    portfolio_compumobile_title:'CompuMobile Repair', portfolio_compumobile_desc:'Interactive chatbot for phone repair businesses. Users get an instant quote and can send it via WhatsApp to confirm and schedule.',
+    about_tag:'About Pegasus', about_title:'A consultancy that\nworks as your partner',
+    about_role:'Founder & Lead Developer', about_stat_tech:'Technologies mastered', about_badge:'I scale teams for each project',
+    about_p1:"I'm Darío, a full stack developer with 5+ years of experience transforming ideas into digital products. I founded Pegasus to give SMEs access to enterprise-quality software development, without the bureaucracy of large consultancies.",
+    about_p2:"I work solo on small projects to maintain agility and personalized attention, and scale developer teams for larger projects. Always with the same commitment: clean code, on-time delivery, and transparent communication.",
+    about_cta:"Let's work together →",
+    value_agile:'Agility', value_agile_desc:'Fast iterations, continuous feedback',
+    value_trust:'Trust', value_trust_desc:'Clear communication and real deliverables',
+    value_scale:'Scalability', value_scale_desc:'Solutions that grow with your business',
+    process_tag:'How we work', process_title:'From idea to product,\nno surprises',
+    step1_title:'Discovery', step1_desc:'We understand your business, goals and challenges. We analyze the market and clearly define project requirements.',
+    step1_a:'Interviews & workshops', step1_b:'Competitive analysis', step1_c:'Scope definition',
+    step2_title:'Design & Architecture', step2_desc:'We prototype the solution, design the technical architecture, and validate with you before writing a line of code.',
+    step2_a:'Wireframes & Prototypes', step2_b:'Database design', step2_c:'Tech stack',
+    step3_title:'Iterative Development', step3_desc:'Short development cycles with partial deliveries. You always know where we are and have full visibility of progress.',
+    step3_a:'Weekly sprints', step3_b:'Regular demos', step3_c:'Continuous adjustments',
+    step4_title:'Launch & Support', step4_desc:'Professional deployment, quality testing, and post-launch support. Your product in production, working from day 1.',
+    step4_a:'QA & Testing', step4_b:'Automated deploy', step4_c:'Ongoing support',
+    contact_tag:"Let's talk", contact_title:"Tell us about your project.\nIt's free.",
+    contact_subtitle:"Whether you have a clear idea or just the concept, we're here to help you shape it and make it a reality.",
+    contact_avail:'We respond within 24 business hours',
+    form_name:'Name', form_name_ph:'Your name', form_email:'Email', form_email_ph:'you@company.com',
+    form_company:'Company', form_optional:'(optional)', form_company_ph:'Your company name',
+    form_service:'What do you need?', form_service_ph:'Select a service',
+    form_service_web:'Custom Web Development', form_service_mobile:'Mobile App', form_service_ecomm:'E-Commerce',
+    form_service_api:'API / Integration', form_service_ux:'UX/UI & Design', form_service_other:'Other',
+    form_message:'Tell us about your project', form_message_ph:"Briefly describe what you need, what stage you're at, and your timeline...",
+    form_budget:'Estimated budget', form_submit:'Send message', form_sending:'Sending...',
+    form_success_title:'Message received!', form_success_msg:"We'll get back to you shortly. Meanwhile, you can reach us on WhatsApp if it's urgent.",
+    val_name_required:'Please enter your name', val_name_short:'Name must be at least 2 characters',
+    val_email_required:'Please enter your email', val_email_invalid:'Please enter a valid email',
+    val_service_required:'Please select a service', val_message_required:'Please describe your project',
+    val_message_short:'Message must be at least 20 characters',
+    footer_tagline:'Custom software for businesses that want to grow.',
+    footer_services:'Services', footer_company:'Company', footer_contact:'Contact',
+    footer_rights:'All rights reserved.', footer_made:'Made with ❤️ in Argentina',
+    pwa_install_msg:'Install Pegasus on your device', pwa_install_btn:'Install',
+  }
+};
+
+let currentLang = localStorage.getItem('pegasus_lang') || 'es';
+const t = key => translations[currentLang][key] || translations.es[key] || key;
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const text = t(el.getAttribute('data-i18n'));
+    if (text) el.textContent = text;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const text = t(el.getAttribute('data-i18n-placeholder'));
+    if (text) el.setAttribute('placeholder', text);
+  });
+  document.documentElement.lang = currentLang;
+  const label = document.getElementById('lang-label');
+  if (label) label.textContent = currentLang.toUpperCase();
+}
+
+function toggleLanguage() {
+  currentLang = currentLang === 'es' ? 'en' : 'es';
+  localStorage.setItem('pegasus_lang', currentLang);
+  applyTranslations();
+}
+
+/* ═══════════════════════════════════════════════════
+   CANVAS — Particle network
+═══════════════════════════════════════════════════ */
+function initCanvas() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let particles = [], animFrame;
+
+  const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = (Math.random() - 0.5) * 0.4;
+      this.r = Math.random() * 1.5 + 0.5;
+      this.alpha = Math.random() * 0.5 + 0.1;
+    }
+    update() {
+      this.x += this.vx; this.y += this.vy;
+      if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(108,99,255,${this.alpha})`;
+      ctx.fill();
+    }
+  }
+
+  const init = () => { resize(); particles = Array.from({length:60}, () => new Particle()); };
+
+  const connect = () => {
+    const maxDist = 120;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < maxDist) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(108,99,255,${(1-dist/maxDist)*0.15})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+  };
+
+  const loop = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    connect();
+    animFrame = requestAnimationFrame(loop);
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) loop();
+      else cancelAnimationFrame(animFrame);
+    });
+  });
+
+  init();
+  observer.observe(canvas);
+  window.addEventListener('resize', () => { resize(); particles.forEach(p => p.reset()); });
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════ */
+function initNavbar() {
+  const navbar = document.querySelector('.navbar');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  const handleScroll = () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+    document.getElementById('back-to-top')?.classList.toggle('visible', window.scrollY > 400);
+  };
+  window.addEventListener('scroll', handleScroll, {passive: true});
+  handleScroll();
+
+  hamburger?.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
+
+  mobileMenu?.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const activeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        document.querySelectorAll(`.nav-link[href="#${entry.target.id}"]`).forEach(l => l.classList.add('active'));
+      }
+    });
+  }, {rootMargin: '-40% 0px -55% 0px'});
+  sections.forEach(s => activeObserver.observe(s));
+}
+
+/* ═══════════════════════════════════════════════════
+   SCROLL ANIMATIONS
+═══════════════════════════════════════════════════ */
+function initScrollAnimations() {
+  const revealEls = document.querySelectorAll(
+    '.service-card, .portfolio-card, .process-step, .about-card, .value, .contact-channel'
+  );
+  revealEls.forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = `${(i % 4) * 0.08}s`;
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+    });
+  }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
+  revealEls.forEach(el => io.observe(el));
+
+  document.querySelectorAll('.section-header, .about-content, .contact-info').forEach(el => {
+    el.classList.add('reveal');
+    const io2 = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io2.unobserve(e.target); } });
+    }, {threshold: 0.15});
+    io2.observe(el);
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   COUNTERS
+═══════════════════════════════════════════════════ */
+function initCounters() {
+  const counters = document.querySelectorAll('[data-count]');
+  if (!counters.length) return;
+  const ease = t => t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+  const animateCounter = el => {
+    const target = parseInt(el.dataset.count, 10);
+    const duration = 1400;
+    const start = performance.now();
+    const update = now => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      el.textContent = Math.round(ease(progress) * target);
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  };
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); io.unobserve(e.target); } });
+  }, {threshold: 0.5});
+  counters.forEach(c => io.observe(c));
+}
+
+/* ═══════════════════════════════════════════════════
+   CONTACT FORM — fix: no auto-scroll, only submit on click
+═══════════════════════════════════════════════════ */
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('form-success');
+  const submitBtn = document.getElementById('submit-btn');
+  if (!form) return;
+
+  const rules = {
+    name:    [{test: v => v.trim() !== '', msg: () => t('val_name_required')}, {test: v => v.trim().length >= 2, msg: () => t('val_name_short')}],
+    email:   [{test: v => v.trim() !== '', msg: () => t('val_email_required')}, {test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()), msg: () => t('val_email_invalid')}],
+    service: [{test: v => v !== '', msg: () => t('val_service_required')}],
+    message: [{test: v => v.trim() !== '', msg: () => t('val_message_required')}, {test: v => v.trim().length >= 20, msg: () => t('val_message_short')}]
+  };
+
+  const showError = (name, msg) => {
+    const field = form.querySelector(`[name="${name}"]`);
+    const errEl = field?.parentElement?.querySelector('.form-error');
+    if (field) field.classList.add('error');
+    if (errEl) errEl.textContent = msg;
+  };
+
+  const clearError = name => {
+    const field = form.querySelector(`[name="${name}"]`);
+    const errEl = field?.parentElement?.querySelector('.form-error');
+    if (field) field.classList.remove('error');
+    if (errEl) errEl.textContent = '';
+  };
+
+  const validateField = (name, value) => {
+    clearError(name);
+    for (const rule of (rules[name] || [])) {
+      if (!rule.test(value)) { showError(name, rule.msg()); return false; }
+    }
+    return true;
+  };
+
+  // Live validation on blur only (not on scroll/load)
+  Object.keys(rules).forEach(name => {
+    const field = form.querySelector(`[name="${name}"]`);
+    if (field) {
+      field.addEventListener('blur', () => validateField(name, field.value));
+      field.addEventListener('input', () => { if (field.classList.contains('error')) validateField(name, field.value); });
+    }
+  });
+
+  // Submit only on actual form submit event (triggered by button click or Enter)
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let valid = true;
+    Object.keys(rules).forEach(name => {
+      const field = form.querySelector(`[name="${name}"]`);
+      if (field && !validateField(name, field.value)) valid = false;
+    });
+    if (!valid) return;
+
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    btnText.hidden = true;
+    btnLoading.hidden = false;
+    btnLoading.removeAttribute('aria-hidden');
+    submitBtn.disabled = true;
+
+    await new Promise(r => setTimeout(r, 1600));
+
+    const formData = new FormData(form);
+    console.log('Form submission:', Object.fromEntries(formData));
+
+    form.hidden = true;
+    success.hidden = false;
+    success.focus?.();
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   BACK TO TOP
+═══════════════════════════════════════════════════ */
+function initBackToTop() {
+  document.getElementById('back-to-top')?.addEventListener('click', () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER YEAR
+═══════════════════════════════════════════════════ */
+function initFooterYear() {
+  const el = document.getElementById('footer-year');
+  if (el) el.textContent = new Date().getFullYear();
+}
+
+/* ═══════════════════════════════════════════════════
+   SMOOTH SCROLL
+═══════════════════════════════════════════════════ */
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   PWA
+═══════════════════════════════════════════════════ */
+function initPWA() {
+  let deferredPrompt;
+  const banner = document.getElementById('install-banner');
+  const installBtn = document.getElementById('install-btn');
+  const closeBtn = document.getElementById('install-close');
+
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    setTimeout(() => { banner.hidden = false; }, 3000);
+  });
+
+  installBtn?.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const {outcome} = await deferredPrompt.userChoice;
+    console.log('[PWA] Install outcome:', outcome);
+    deferredPrompt = null;
+    banner.hidden = true;
+  });
+
+  closeBtn?.addEventListener('click', () => { banner.hidden = true; deferredPrompt = null; });
+  window.addEventListener('appinstalled', () => { banner.hidden = true; });
+}
+
+/* ═══════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  applyTranslations();
+  document.getElementById('lang-toggle')?.addEventListener('click', toggleLanguage);
+  initCanvas();
+  initNavbar();
+  initScrollAnimations();
+  initCounters();
+  initContactForm();
+  initBackToTop();
+  initFooterYear();
+  initPWA();
+  initSmoothScroll();
+  console.log('%c🦄 Pegasus IT', 'font-size:18px;font-weight:bold;color:#6C63FF;');
+  console.log('%cHecho con pasión en Argentina 🇦🇷', 'color:#00D4FF;');
+});
+  </script>
+</body>
+</html>
