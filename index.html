@@ -480,6 +480,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   transition: var(--transition);
 }
 .contact-channel:hover { border-color: var(--primary); transform: translateX(4px); }
+button.contact-channel { width: 100%; text-align: left; font-family: var(--font); color: var(--text); }
 .contact-channel--wa:hover { border-color: #25d366; }
 .channel-icon { color: var(--primary-2); flex-shrink: 0; }
 .contact-channel--wa .channel-icon { color: #25d366; }
@@ -824,7 +825,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
             </div>
             <div class="portfolio-card__info">
               <div class="portfolio-card__tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">E-Commerce</span></div>
-              <h3 data-i18n="portfolio_ecomm_title">E-Commerce Compumobile</h3>
+              <h3 data-i18n="portfolio_ecomm_title">E-Commerce TypeScript</h3>
               <p data-i18n="portfolio_ecomm_desc">Tienda online completa con carrito, pagos integrados y gestión de productos. Stack moderno con TypeScript end-to-end.</p>
               <a href="https://ecommerce-typescript-x6ux.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-link">ecommerce-typescript ↗</a>
             </div>
@@ -1027,11 +1028,12 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
             <h2 id="contact-heading" class="section-title" data-i18n="contact_title">Contanos tu proyecto.&#10;Es gratis.</h2>
             <p data-i18n="contact_subtitle">Ya sea que tengas una idea clara o apenas el concepto, estamos para ayudarte a darle forma y hacerlo realidad.</p>
             <div class="contact-channels">
-              <a href="/cdn-cgi/l/email-protection#c0a4a1aea4b2a1a4a1f2f380a7ada1a9aceea3afad" class="contact-channel" aria-label="Email: dandrada23@gmail.com">
+              <!-- Email & WhatsApp: icon buttons, email built by JS to avoid scraping -->
+              <button type="button" class="contact-channel" id="btn-email" aria-label="Enviar email">
                 <div class="channel-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="5" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 8L11 13L20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-                <div><span class="channel-label">Email</span><span class="channel-value"><span class="__cf_email__" data-cfemail="87e3e6e9e3f5e6e3e6b5b4c7e0eae6eeeba9e4e8ea">[email&#160;protected]</span></span></div>
-              </a>
-              <a href="https://wa.me/541150610043" target="_blank" rel="noopener noreferrer" class="contact-channel contact-channel--wa" aria-label="WhatsApp: +54 11 5061 0043">
+                <div><span class="channel-label">Email</span><span class="channel-value" id="contact-email-display"></span></div>
+              </button>
+              <a href="https://wa.me/541150610043" target="_blank" rel="noopener noreferrer" class="contact-channel contact-channel--wa" aria-label="WhatsApp">
                 <div class="channel-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C6.03 2 2 6.03 2 11C2 12.7 2.46 14.3 3.27 15.67L2 20L6.47 18.75C7.8 19.51 9.35 19.95 11 19.95C15.97 19.95 20 15.92 20 10.95C20 6.03 15.97 2 11 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 9C8 9 8 7.5 9.5 7.5C10.5 7.5 11 8.5 11 9C11 9.5 10.5 10.5 9.5 11L8 12.5C8 12.5 9.5 14.5 12.5 14.5C13.5 14.5 14 14 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                 <div><span class="channel-label">WhatsApp</span><span class="channel-value">+54 11 5061 0043</span></div>
               </a>
@@ -1044,7 +1046,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 
           <!-- Contact Form -->
           <div class="contact-form-wrap">
-            <form id="contact-form" class="contact-form" novalidate aria-label="Formulario de contacto">
+            <form id="contact-form" class="contact-form" novalidate aria-label="Formulario de contacto" onsubmit="return false;">
               <div class="form-row">
                 <div class="form-group">
                   <label for="name" data-i18n="form_name">Nombre</label>
@@ -1146,7 +1148,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <nav class="footer-col" aria-label="Contacto">
           <span class="footer-col-title" data-i18n="footer_contact">Contacto</span>
           <ul role="list">
-            <li><a href="/cdn-cgi/l/email-protection#bcd8ddd2d8ceddd8dd8e8ffcdbd1ddd5d092dfd3d1"><span class="__cf_email__" data-cfemail="ef8b8e818b9d8e8b8edddcaf88828e8683c18c8082">[email&#160;protected]</span></a></li>
+            <li><a id="footer-email-link" href="#">dandrada23&#64;gmail.com</a></li>
             <li><a href="https://wa.me/541150610043" target="_blank" rel="noopener noreferrer">+54 11 5061 0043</a></li>
           </ul>
         </nav>
@@ -1183,7 +1185,7 @@ const translations = {
     service_ux_title:'UX/UI & Diseño', service_ux_desc:'Interfaces que los usuarios aman. Diseño centrado en la experiencia, prototipado rápido y sistemas de diseño escalables.',
     service_custom_desc:'¿Necesitás algo que no está en la lista? Conversemos sobre tu proyecto.', service_custom_cta:'Hablemos →',
     portfolio_tag:'Proyectos reales', portfolio_title:'Trabajo que\nhabla por sí solo', portfolio_view:'Ver proyecto',
-    portfolio_ecomm_title:'E-Commerce Compumobile', portfolio_ecomm_desc:'Tienda online completa con carrito, pagos integrados y gestión de productos. Stack moderno con TypeScript end-to-end.',
+    portfolio_ecomm_title:'E-Commerce TypeScript', portfolio_ecomm_desc:'Tienda online completa con carrito, pagos integrados y gestión de productos. Stack moderno con TypeScript end-to-end.',
     portfolio_chofer_title:'ML Chofer', portfolio_chofer_desc:'Plataforma de gestión de viajes en tiempo real. Seguimiento de conductores, asignación inteligente de rutas y panel de control.',
     portfolio_juan_title:'Lo de Juan', portfolio_juan_desc:'Landing page para restaurante con menú digital, sistema de reservas y optimización SEO para búsquedas locales.',
     portfolio_sala_title:'Encaja Negra Sala', portfolio_sala_desc:'Sistema de reservas para sala de eventos con selección de asientos visual, calendario dinámico y confirmación en tiempo real.',
@@ -1239,7 +1241,7 @@ const translations = {
     service_ux_title:'UX/UI & Design', service_ux_desc:'Interfaces users love. Experience-centered design, rapid prototyping, and scalable design systems.',
     service_custom_desc:"Need something not on the list? Let's talk about your project.", service_custom_cta:'Get in touch →',
     portfolio_tag:'Real projects', portfolio_title:'Work that\nspeaks for itself', portfolio_view:'View project',
-    portfolio_ecomm_title:'Compumobile E-Commerce', portfolio_ecomm_desc:'Full online store with cart, integrated payments, and product management. Modern stack with end-to-end TypeScript.',
+    portfolio_ecomm_title:'TypeScript E-Commerce', portfolio_ecomm_desc:'Full online store with cart, integrated payments, and product management. Modern stack with end-to-end TypeScript.',
     portfolio_chofer_title:'ML Chofer', portfolio_chofer_desc:'Real-time ride management platform. Driver tracking, smart route assignment, and control panel.',
     portfolio_juan_title:'Lo de Juan', portfolio_juan_desc:'Restaurant landing page with digital menu, reservation system, and SEO optimization for local searches.',
     portfolio_sala_title:'Encaja Negra Sala', portfolio_sala_desc:'Event venue booking system with visual seat selection, dynamic calendar, and real-time confirmation.',
@@ -1521,7 +1523,8 @@ function initContactForm() {
   });
 
   // Submit only on actual form submit event (triggered by button click or Enter)
-  form.addEventListener('submit', async e => {
+  // Use click on submit button instead of form submit to prevent any page reload
+  submitBtn.addEventListener('click', async e => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -1614,4 +1617,27 @@ function initPWA() {
 ═══════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
   applyTranslations();
-  document.getElementById('lang-toggle')?.addEventListener('click', to
+  document.getElementById('lang-toggle')?.addEventListener('click', toggleLanguage);
+  initCanvas();
+  initNavbar();
+  initScrollAnimations();
+  initCounters();
+  initContactForm();
+  initBackToTop();
+  initFooterYear();
+  initPWA();
+  initSmoothScroll();
+
+  // Build email address from parts — prevents Cloudflare & scrapers from intercepting
+  const ep = ['dandrada23', 'gmail', 'com'];
+  const emailAddr = ep[0] + '@' + ep[1] + '.' + ep[2];
+  const emailDisplay = document.getElementById('contact-email-display');
+  if (emailDisplay) emailDisplay.textContent = emailAddr;
+  const btnEmail = document.getElementById('btn-email');
+  if (btnEmail) btnEmail.addEventListener('click', () => { window.location.href = 'mailto:' + emailAddr; });
+  const footerEmailLink = document.getElementById('footer-email-link');
+  if (footerEmailLink) { footerEmailLink.href = 'mailto:' + emailAddr; footerEmailLink.textContent = emailAddr; }
+});
+  </script>
+</body>
+</html>
